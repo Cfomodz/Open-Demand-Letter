@@ -1,0 +1,1 @@
+Your Honor, under 47 U.S.C. § 227, this is a strict liability statute. I have proven my number is on the registry, I have proven they called it, and the defendant has failed to provide any 'Safe Harbor' documentation to show this was a bona fide error. Therefore, I am requesting the statutory maximum of $1,500 due to their reckless disregard for federal and [state] law.
