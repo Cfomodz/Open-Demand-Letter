@@ -8,22 +8,15 @@
 
 ### Automatically (via Cloudflare)
 
-Cloudflare Pages provides basic web analytics as part of its hosting service. This includes:
+We do **not** enable Cloudflare Web Analytics, which would add a Cloudflare script to
+every page. No analytics script runs on this site.
 
-- Page view counts
-- Country-level geographic data
-- Browser/OS type (aggregated)
-- Referrer URLs
+Like any web host, Cloudflare necessarily receives your IP address and the page you
+requested in order to serve it, and its dashboard shows us aggregate request counts
+(for example, total requests and country). This never includes:
 
-**This data is:**
-- Collected by Cloudflare, not by us
-- Aggregated and not tied to individual users
-- Standard web telemetry with no personal information
-- Not under our control to disable (it's part of the hosting platform)
-
-**This data does NOT include:**
 - Any form field contents
-- IP addresses accessible to us
+- The URL fragment (`#...`), so pre-filled values are never seen
 - Any information about your demand letter
 - Any information about who you are or who your letter is addressed to
 
@@ -33,7 +26,9 @@ After generating a letter, users may choose to share **only the demand amount** 
 
 - **Opt-in only** — you must click "Share Amount" explicitly
 - **Amount only** — the numeric value (e.g., `5000`), nothing else
-- **Anonymous** — no user ID, no session ID, no IP logging by our endpoint
+- **Not stored with any identifier** — we store only the amount: no user ID, no session ID,
+  no IP address, no timestamp. (Cloudflare necessarily sees your IP address to route the
+  request, as with any page load; our code does not record it.)
 - **One-time** — a single POST request, no ongoing tracking
 
 This data is used solely to understand the general range of demands people create (e.g., "most demands are under $10,000").
@@ -47,8 +42,9 @@ Under no circumstances does this application collect, transmit, or store:
 - Phone numbers, emails, or fax numbers
 - The content or subject of your demand
 - The generated letter text
-- Your IP address (at the application level)
+- Your IP address (our code never records it)
 - Cookies or tracking identifiers
+- Analytics scripts of any kind
 - Browser fingerprints
 
 ## How the Fragment API Preserves Privacy
@@ -73,7 +69,7 @@ Privacy is enforced at the architectural level:
 
 1. **No server-side code**: The app is static files. There is no backend to receive data.
 2. **No API calls during form use**: Network tab will show zero requests between page load and download.
-3. **No third-party scripts**: No Google Analytics, no Facebook Pixel, no tracking SDKs.
+3. **No third-party scripts**: No Google Analytics, no Facebook Pixel, no tracking SDKs, and Cloudflare Web Analytics is left off.
 4. **Content Security Policy**: CSP headers prevent unauthorized script execution.
 5. **Open source**: Anyone can verify these claims by reading the code.
 

@@ -9,7 +9,8 @@ opt in to share the demand amount (and only the amount) after generation.
 ## Architecture
 
 - **Static site**: HTML + CSS + vanilla JS. No frameworks, no build step.
-- **Hosting**: Cloudflare Pages (provides automatic HTTPS + basic web telemetry).
+- **Hosting**: Cloudflare Pages (automatic HTTPS). Cloudflare Web Analytics stays **off** —
+  it injects a third-party script.
 - **Storage**: None. Zero server-side storage. No database. No cookies (beyond Cloudflare).
 - **Privacy model**: All form data stays in the browser. Letter generation happens
   entirely in JavaScript. The generated HTML file is downloaded directly; PDF comes from
@@ -39,7 +40,7 @@ opt in to share the demand amount (and only the amount) after generation.
 │   └── telemetry.js        # Optional opt-in amount sharing (POST only amount)
 ├── assets/
 │   └── icons/              # GitHub icon, favicon, etc.
-├── templates/              # Draft letter language (TCPA, etc.) — not yet wired into the app
+├── templates/              # Fill-in-the-blank letter templates (see templates/README.md)
 ├── docs/                   # Project documentation
 ├── _headers                # Cloudflare Pages response headers (CSP, Referrer-Policy)
 ├── .github/                # GitHub templates, workflows
@@ -95,7 +96,8 @@ Supported hash parameters: `to_name`, `to_company`, `to_address`, `to_phone`,
 - **NEVER** add analytics that captures form content.
 - **NEVER** transmit recipient/sender details to any server.
 - **NEVER** use query parameters (`?`) for sensitive data — only fragments (`#`).
-- **NEVER** add third-party scripts that could exfiltrate data.
+- **NEVER** add third-party scripts that could exfiltrate data — including Cloudflare Web
+  Analytics.
 - The ONLY data that may be sent is the demand **amount**, and ONLY after
   explicit user opt-in, ONLY after the letter is generated, via a single
   POST request with no other identifying information.

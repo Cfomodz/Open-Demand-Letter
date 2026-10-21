@@ -18,7 +18,9 @@ People who need to send a demand letter face several barriers:
 
 ## Solution
 
-A dead-simple web app that generates a demand letter from basic inputs. Everything happens in the browser. The result downloads as a file. Nothing is stored or transmitted.
+A dead-simple web app that fills in a demand letter template from basic inputs. Everything happens in the browser. The result downloads as a file. Nothing is stored or transmitted.
+
+**Templates, not legal documents.** Every letter is fixed, fill-in-the-blank text. The app fills the blanks; it never drafts or tailors legal language. See [templates/README.md](../templates/README.md) for the template library.
 
 ## Target Users
 
@@ -117,15 +119,13 @@ After the letter is generated and ready to download:
 - Server-side storage of any kind
 - Payment / pricing / premium tiers
 - Sending the letter (email, fax, mail) — that's on the user
-- Legal advice or jurisdiction-specific language
+- Legal advice, or language tailored to the user's facts (templates may include clearly labeled optional sections, such as the California CCPA notice)
 - Letter tracking or read receipts
-- Templates beyond basic demand letter
+- Free-form letter customization beyond filling the template's blanks
 - Multi-language support (English only for v1)
 
 ## Legal Disclaimer
 
-Displayed on both landing and app pages:
+The canonical text lives in [DISCLAIMER.md](DISCLAIMER.md). The short version appears in the footer of every page; the full version appears on the app page before the Generate button.
 
-> "This tool generates a basic demand letter template for informational purposes only.
-> It does not constitute legal advice. For significant disputes, consult a licensed
-> attorney in your jurisdiction."
+In short: these are letter templates, not legal documents or legal advice; they are provided "as is" with no warranty; no attorney-client relationship is created; and the user is solely responsible for how they use them.

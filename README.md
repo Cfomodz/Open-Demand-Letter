@@ -38,7 +38,7 @@ This project was built with a single obsession: **your data stays on your machin
 - No form data is transmitted to any server
 - No database, no accounts, no cookies tracking your activity
 - The only data that *can* be shared is the **demand amount** — and only if you explicitly opt in after your letter is generated
-- Basic web telemetry (page views, country-level geo) is handled automatically by Cloudflare — this contains no personal information and no letter content
+- No analytics scripts — Cloudflare Web Analytics is deliberately left off
 - The source code is open for anyone to verify: [View on GitHub](https://github.com/Cfomodz/Open-Demand-Letter)
 
 For the full privacy design, see [docs/PRIVACY.md](docs/PRIVACY.md).
@@ -96,4 +96,4 @@ The core principles are non-negotiable:
 
 ## Disclaimer
 
-This tool generates a basic demand letter template. **It is not legal advice.** For complex disputes or significant amounts, consult a licensed attorney in your jurisdiction. The generated letter is a starting point, not a substitute for professional legal counsel.
+These are letter templates, **not legal documents or legal advice**. They are provided "as is," with no warranty of any kind, and using them does not create an attorney-client relationship. You are solely responsible for what you send and how you use it. For significant matters, consult a licensed attorney in your jurisdiction. Full text: [docs/DISCLAIMER.md](docs/DISCLAIMER.md).

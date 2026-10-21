@@ -29,7 +29,7 @@ Open Demand Letter is a **static, client-side web application** with zero server
 │  Cloudflare Pages   │
 │  (static hosting)   │
 │  - HTTPS            │
-│  - Basic analytics  │
+│  - No analytics JS  │
 │  - CDN edge cache   │
 └─────────────────────┘
 ```
@@ -89,8 +89,8 @@ Open Demand Letter is a **static, client-side web application** with zero server
 - After letter generation, presents opt-in prompt:
   "Would you like to anonymously share the demand amount? This helps us understand how people use this tool."
 - If user opts in: sends a single POST request containing ONLY the numeric amount
-- No identifying information, no timestamps correlatable to user activity
-- Endpoint: a simple Cloudflare Worker that appends to an aggregate counter
+- Only the amount is stored: no IP, no timestamp, no identifiers
+- Endpoint: a simple Cloudflare Worker that adds the amount to an aggregate (storage choice still open; KV has no atomic increment, so concurrent writes can be lost)
 
 ## Data Flow
 
