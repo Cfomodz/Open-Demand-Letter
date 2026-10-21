@@ -9,8 +9,9 @@ documents or legal advice.
 
 | File | Use when | Main legal basis |
 |------|----------|------------------|
-| `TCPA.md` | Two or more robocalls within 12 months to a number on the Do Not Call Registry | 47 U.S.C. § 227(b), (c)(5) |
-| `illegal_lead_gen.md` | Add-on section for `TCPA.md` when the caller bought your info as a lead | 47 C.F.R. § 64.1200 |
+| `TCPA_single_robocall.md` | One prerecorded or artificial-voice telemarketing call (Do Not Call registration not required) | 47 U.S.C. § 227(b) |
+| `TCPA_dnc_robocalls.md` | Two or more robocalls within 12 months to a number on the Do Not Call Registry; cites both claims | 47 U.S.C. § 227(b), (c)(5) |
+| `illegal_lead_gen.md` | Add-on section for either TCPA letter when the caller bought your info as a lead | 47 C.F.R. § 64.1200 |
 | `maximum.md` | Script for small claims court, not a letter: asking for $1,500 per call | 47 U.S.C. § 227(b)(3), (c)(5) |
 | `data_breach.md` | A company exposed your personal information | General demand; optional CCPA notice |
 | `data_breach_sensitive.md` | The exposed data included your SSN, card numbers, ID documents, or financial records | General demand; optional CCPA notice |
@@ -24,6 +25,14 @@ documents or legal advice.
   both § 227(b) and § 227(c); others don't.
 - The Do Not Call claim (§ 227(c)(5)) needs more than one call from or for the same
   company within 12 months. The robocall claim (§ 227(b)) does not.
+- **Different numbers, same company, still count.** The 12-month rule counts calls
+  "by or on behalf of the same entity," not from the same number. Rotating or spoofed
+  VoIP numbers are common. What you need is proof that one company is behind the calls:
+  the company name the caller gave, the product pitched, a callback number or website,
+  a transfer to a named company, or a follow-up email or text. If you can, stay on the
+  line long enough to learn who is calling.
+- Spoofing a caller ID to defraud is separately illegal (Truth in Caller ID Act,
+  § 227(e)), but individuals can't sue under that section. Report it to the FCC.
 - Companies get up to 31 days to remove newly registered numbers from their lists, so
   calls in your first month on the Registry may not count.
 - Keep evidence: screenshots of your call log, voicemails, and your Registry

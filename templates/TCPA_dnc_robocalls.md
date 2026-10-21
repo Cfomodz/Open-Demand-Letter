@@ -10,6 +10,8 @@ I received the following calls within a single 12-month period:
 2. [Date and Time] from [Calling Number]
 [List each additional call]
 
+[If the calls came from different numbers:] Although these calls came from different numbers, each one [identified itself as / promoted the products or services of / transferred me to a representative of] [Company Name]. Under 47 U.S.C. § 227(c)(5), what matters is that the calls were made by or on behalf of the same entity, not that they came from the same number.
+
 I have no established business relationship with [Company Name], and I have never given prior express written consent to receive these calls.
 
 Legal Liability:
