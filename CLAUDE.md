@@ -11,8 +11,9 @@ opt in to share the demand amount (and only the amount) after generation.
 - **Static site**: HTML + CSS + vanilla JS. No frameworks, no build step.
 - **Hosting**: Cloudflare Pages (provides automatic HTTPS + basic web telemetry).
 - **Storage**: None. Zero server-side storage. No database. No cookies (beyond Cloudflare).
-- **Privacy model**: All form data stays in the browser. Letter generation and PDF/DOCX
-  creation happen entirely in JavaScript. The generated file is downloaded directly.
+- **Privacy model**: All form data stays in the browser. Letter generation happens
+  entirely in JavaScript. The generated HTML file is downloaded directly; PDF comes from
+  the browser's own Print → Save as PDF, so no PDF library is needed.
 
 ## Key Design Principles
 
@@ -38,7 +39,9 @@ opt in to share the demand amount (and only the amount) after generation.
 │   └── telemetry.js        # Optional opt-in amount sharing (POST only amount)
 ├── assets/
 │   └── icons/              # GitHub icon, favicon, etc.
+├── templates/              # Draft letter language (TCPA, etc.) — not yet wired into the app
 ├── docs/                   # Project documentation
+├── _headers                # Cloudflare Pages response headers (CSP, Referrer-Policy)
 ├── .github/                # GitHub templates, workflows
 ├── CLAUDE.md               # This file
 ├── agents.md               # Sub-agent coordination doc
@@ -54,6 +57,9 @@ opt in to share the demand amount (and only the amount) after generation.
 - **Mobile-first CSS**: Responsive design, clean and minimal.
 - **No external API calls** from the app except the optional telemetry endpoint.
 - **Comments**: Only where logic is non-obvious. Code should be self-documenting.
+- **Never render user input as HTML**: Form and fragment values must be escaped (or set
+  via `textContent`) before going into the preview or the downloaded file. A crafted
+  fragment link must not be able to inject script.
 
 ## Fragment API (Hash Parameters)
 
@@ -68,7 +74,7 @@ any data touching the server.
 
 Supported hash parameters: `to_name`, `to_company`, `to_address`, `to_phone`,
 `to_email`, `to_fax`, `to_info`, `from_name`, `from_company`, `from_address`,
-`from_phone`, `from_email`, `from_fax`, `from_info`, `issue`, `amount`,
+`from_phone`, `from_email`, `from_fax`, `from_info`, `issue`, `issue_type`, `amount`,
 `deadline`, `auto` (if `auto=1`, generate and download immediately).
 
 ## Testing

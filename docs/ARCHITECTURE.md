@@ -81,7 +81,7 @@ Open Demand Letter is a **static, client-side web application** with zero server
 - Converts the generated letter HTML to a downloadable file
 - Triggers browser download via `Blob` + `URL.createObjectURL`
 - Primary format: HTML (styled, print-ready)
-- Future consideration: PDF generation via client-side library
+- PDF: via the browser's Print → Save as PDF on a print stylesheet (no library needed)
 
 ### `js/telemetry.js` — Optional Amount Sharing
 
@@ -122,7 +122,18 @@ Open Demand Letter is a **static, client-side web application** with zero server
 - **No server-side processing**: Eliminates entire classes of attacks (SQL injection, server-side data breaches, etc.)
 - **No query parameters for sensitive data**: Fragment identifiers (`#`) are never sent in HTTP requests
 - **No third-party scripts**: No analytics SDKs, no ad trackers, no external JS
-- **Content Security Policy**: Strict CSP headers via Cloudflare to prevent XSS
+- **Content Security Policy**: Set in a `_headers` file at the repo root (Cloudflare Pages
+  reads it on deploy). Starting point:
+  ```
+  /*
+    Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' <telemetry-endpoint>; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+    Referrer-Policy: no-referrer
+    X-Content-Type-Options: nosniff
+    Permissions-Policy: camera=(), microphone=(), geolocation=()
+  ```
+- **Output escaping**: All user and fragment values are HTML-escaped before they reach the
+  preview or the downloaded file. CSP protects the hosted page, but not the downloaded
+  file, which opens from disk, so escaping is the primary defense there.
 - **Subresource Integrity**: If any external resources are ever added, SRI hashes required
 - **HTTPS only**: Enforced by Cloudflare
 

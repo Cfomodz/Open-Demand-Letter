@@ -77,9 +77,7 @@ cd Open-Demand-Letter
 
 # Serve with any static file server
 python3 -m http.server 8000
-# or
-npx serve .
-# or just open index.html in your browser
+# then open http://localhost:8000
 ```
 
 ## Contributing

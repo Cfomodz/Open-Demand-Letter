@@ -125,11 +125,16 @@ javascript:void(window.open('https://opendemandletter.com/app.html#to_name='+enc
 - **`auto=1`** will generate the letter and trigger download immediately on page load
   - The form is still shown (pre-filled) so the user can see what was generated
   - The user can modify and re-generate if needed
-- **Hash is optionally cleared** from the URL bar after parsing for cleanliness
+  - Some browsers block or prompt for downloads that aren't triggered by a click, so a
+    visible Download button is always shown as a fallback
+- **Hash is cleared** from the URL bar after parsing with `history.replaceState`, so the
+  pre-filled data doesn't linger in the address bar or the back-button history entry
+- **Values are treated as plain text** — they are escaped before display, so a link
+  cannot inject HTML or script into the letter
 
 ## Security Notes
 
 - Fragment data never appears in HTTP requests, server logs, or Cloudflare analytics
 - Links containing fragments can be safely bookmarked — the data stays local
-- Be cautious sharing fragment URLs through channels that might log full URLs (some chat apps may log full URLs including fragments in link previews)
+- Be cautious sharing fragment URLs through channels that might log full URLs (chat apps, email link scanners, and browser history/sync all see the full URL including the fragment)
 - For maximum privacy, users can fill in the form manually instead of using fragment URLs

@@ -61,7 +61,8 @@
 - [ ] Populate form fields with parsed values
 - [ ] Handle `auto=1` parameter (auto-generate + download)
 - [ ] Ignore unknown parameters gracefully
-- [ ] Clear hash from URL bar after parsing (optional, for cleanliness)
+- [ ] Clear hash from URL bar after parsing (`history.replaceState`)
+- [ ] Escape all values before rendering (no HTML injection from links)
 
 ### 2.2 Documentation
 - [ ] Write docs/FRAGMENT_API.md with full parameter reference
@@ -92,10 +93,10 @@
 **Goal:** Refine UX, accessibility, and cross-browser support.
 
 ### 4.1 Accessibility
-- [ ] ARIA labels on all form fields
+- [ ] Native `<label>` for every form field (ARIA only where native HTML can't do it)
 - [ ] Keyboard navigation support
 - [ ] Screen reader testing
-- [ ] Sufficient color contrast (WCAG AA)
+- [ ] Meets WCAG 2.2 AA (contrast, focus visible, target size)
 - [ ] Focus management during form → preview → download flow
 
 ### 4.2 Cross-Browser Testing
@@ -120,7 +121,7 @@
 
 These are ideas, not plans. They may never be implemented.
 
-- PDF generation via client-side library (jsPDF or similar)
+- One-click PDF (beyond browser Print → Save as PDF) — would require a library, which conflicts with the no-dependency rule
 - Multiple letter templates (formal, informal, final notice)
 - Multi-language support
 - "Share via link" button that constructs a fragment API URL

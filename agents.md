@@ -14,7 +14,9 @@ no build step, and no npm. All work happens in plain HTML, CSS, and vanilla Java
 **Scope:** `index.html`, `app.html`, `css/style.css`
 
 **Instructions:**
-- Write semantic HTML5 with proper ARIA attributes
+- Write semantic HTML5: native `<label for>`, `<fieldset>`/`<legend>`; add ARIA only
+  where no native element does the job
+- Target WCAG 2.2 AA
 - CSS is mobile-first, responsive, minimal — no frameworks
 - Landing page (`index.html`) is a single-screen marketing page
 - App page (`app.html`) is the form + preview + download flow
@@ -32,7 +34,9 @@ no build step, and no npm. All work happens in plain HTML, CSS, and vanilla Java
 - Each file is a self-contained module loaded via `<script>` tags
 - Never make network requests containing user form data
 - `letter.js`: Handle all combinations of present/absent fields gracefully
-- `fragment-api.js`: Parse `window.location.hash`, never `window.location.search`
+- `fragment-api.js`: Parse `window.location.hash` with `URLSearchParams`, never
+  `window.location.search`; clear it afterwards with `history.replaceState`
+- Never insert form or fragment values via `innerHTML` without escaping
 - `download.js`: Use Blob + createObjectURL pattern. File must be print-ready HTML.
 - `telemetry.js`: Only the numeric amount. Only on explicit opt-in. Single POST.
 - Test with DevTools Network tab open to verify no data leaks
@@ -64,8 +68,9 @@ no build step, and no npm. All work happens in plain HTML, CSS, and vanilla Java
 
 1. **Privacy is a hard constraint.** If an agent's changes could transmit user data,
    the Review Agent must verify before merge.
-2. **No dependencies.** Never add npm packages, CDN scripts, or external resources.
-   Exception: a single font from Google Fonts is acceptable if needed.
+2. **No dependencies.** Never add npm packages, CDN scripts, or external resources —
+   including web fonts from Google Fonts or other CDNs (they send the visitor's IP to a
+   third party). Use a system font stack, or self-host a font file under `assets/`.
 3. **File structure is defined in CLAUDE.md.** Don't create files outside the
    established structure without updating CLAUDE.md.
 4. **All changes must be tested** with: empty form, full form, partial form,
